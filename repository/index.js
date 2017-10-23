@@ -5,10 +5,10 @@ import neo4j from './datasource/neo4j'
 
 const datasources = {gremlin, neo4j}
 
-const {createPerson, listPerson} = datasources[getType()] 
+const {createPerson: createPersonFn, listPerson: listPersonFn} = datasources[getType()] 
 
 const inject = (fn) => fn.bind({query})
 
-export const createPerson = inject(createPerson)
+export const createPerson = inject(createPersonFn)
 
-export const listPerson = inject(listPerson)
+export const listPerson = inject(listPersonFn)

@@ -9,7 +9,9 @@
     "repl-gremlin": "babel-node repl.js --t=gremlin",
     "repl-neo4j": "babel-node repl.js --t=neo4j",
     "seeds": "babel-node seeds.js",
-    "proof": "babel-node drivers/index"
+    "proof": "babel-node drivers/index",
+    "serve-gremlin": "babel-node server.js --t=gremlin",
+    "serve-neo4j": "babel-node server.js --t=neo4j"
   },
   "author": "",
   "license": "ISC",
