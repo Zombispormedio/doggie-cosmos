@@ -2,10 +2,11 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import methodOverride from 'method-override'
-import {connectDB} from './graphClient'
+import {connect} from './drivers'
 import {createNode, listNodes} from './controllers/nodesController'
+import {getConfiguration} from './config'
 
-connectDB()
+connect(getConfiguration())
 const app = express()
 app.use(bodyParser.json())
 app.use(morgan("combined"))

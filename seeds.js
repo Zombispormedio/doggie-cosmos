@@ -1,5 +1,6 @@
 import faker from 'faker'
-import {connectDB, makeGremlin} from './graphClient'
+
+/*
 
 connectDB()
 const gremlin = makeGremlin()
@@ -26,4 +27,4 @@ const listAll = async () => {
     return await gremlin`g.V().hasLabel('person')`
 }
 
-listAll().then(console.log).catch(console.error)
+listAll().then(console.log).catch(console.error)*/

@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js --exec babel-node",
-    "repl": "babel-node repl.js",
-    "seeds": "babel-node seeds.js"
+    "repl-gremlin": "babel-node repl.js --t=gremlin",
+    "repl-neo4j": "babel-node repl.js --t=neo4j",
+    "seeds": "babel-node seeds.js",
+    "proof": "babel-node drivers/index"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +25,8 @@
     "faker": "^4.1.0",
     "gremlin": "^2.6.0",
     "method-override": "^2.3.10",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "neo4j-driver": "^1.5.0",
+    "yargs": "^9.0.1"
   }
 }

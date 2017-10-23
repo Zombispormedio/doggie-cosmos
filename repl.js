@@ -1,30 +1,30 @@
-import {connectDB, makeGremlin} from './graphClient'
+import {connect, query} from './drivers'
 import readline from 'readline'
 import util from 'util'
+import {getConfiguration, getType} from './config'
 
-const client = connectDB()
-const query = (line) => {
-    return new Promise((resolve, reject) => {
-        client.execute(line, (err, results) => {
-            if (err) {
-              return reject(err)
-            }
-          
-            resolve(results);
-          });
-    })
+const transforModel = (result)=>{
+    const type = getType()
+    if(type === "neo4j")
+        try{
+            return result.get("object")
+        }catch(ignored){}
+    return result
 }
+
+connect(getConfiguration())
 
 const rl = readline.createInterface(process.stdin, process.stdout)
 
-rl.setPrompt("gremlin> ")
-
+rl.setPrompt(`${getType()}> `)
 rl.prompt();
 rl.on('line', function(line) {
     if (line === "exit") rl.close();
     console.time("Time: ")
-    query(line).then(result=>{
-        console.log(util.inspect(result, {depth: null, colors: true}))
+    query(line).then(results=>{
+        for(let result of results){
+            console.log(util.inspect(transforModel(result), {depth: null, colors: true}))
+        }
         console.timeEnd("Time: ")
         rl.prompt();
     }).catch(err=>{
@@ -35,3 +35,4 @@ rl.on('line', function(line) {
 }).on('close',function(){
     process.exit(0);
 });
+
