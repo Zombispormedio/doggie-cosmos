@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js --exec babel-node",
-    "performance": "babel-node performance.js"
+    "repl": "babel-node repl.js",
+    "seeds": "babel-node seeds.js"
   },
   "author": "",
   "license": "ISC",

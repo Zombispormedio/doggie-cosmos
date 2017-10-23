@@ -5,7 +5,7 @@ if(process.env.NODE_ENV != "production"){
 
 let client 
 
-export const gremlin = ()=>{
+export const makeGremlin = ()=>{
     return makeTemplateTag(client)
 }
 export const connectDB = () =>{
@@ -18,5 +18,6 @@ export const connectDB = () =>{
             "user": `/dbs/${process.env.database}/colls/${process.env.collection}`,
             "password": process.env.primaryKey
         })
-}
 
+    return client
+}
