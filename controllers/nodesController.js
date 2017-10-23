@@ -1,13 +1,13 @@
-import {query} from '../drivers'
+import {} from '../repository'
 
 
 export const createNode= async (req, res) => {
-    const user = await query(`g.addV('person').property('id', '${req.body.name}')`);
+    const user = await ;
     res.json(user)
 }
 
 export const listNodes= async (req, res) => {
-    const users = await query(`g.V().hasLabel('person')`);
+    const users = await ;
     res.json({
         users,
         totalCount: users.length
