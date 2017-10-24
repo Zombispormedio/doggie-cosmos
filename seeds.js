@@ -1,30 +1,16 @@
 import faker from 'faker'
+import {connect} from './drivers'
+import {getConfiguration} from './config'
+import {createPerson} from './repository'
 
-/*
+connect(getConfiguration())
 
-connectDB()
-const gremlin = makeGremlin()
-const numUsers = 100
+const promises = []
 
-const createUser = async (name) => {
-    return await gremlin`g.addV('person').property('id', ${name})`
+for(let i=0; i< 800; i++){
+    promises.push(createPerson(faker.name.findName()))
 }
 
+const doit = async () => await Promise.all(promises).then(console.log).catch(console.error)
 
-const createEdge = async () => {
-    return await gremlin`
-        g.V('Eusebio Pfannerstill').addE('knows').to(g.V('Waino McCullough II'))
-    `
-}
-
-const removeAll = async () => {
-    return await gremlin`
-    g.V().drop()
-`
-}
-
-const listAll = async () => {
-    return await gremlin`g.V().hasLabel('person')`
-}
-
-listAll().then(console.log).catch(console.error)*/
+doit().then(()=>process.exit())
